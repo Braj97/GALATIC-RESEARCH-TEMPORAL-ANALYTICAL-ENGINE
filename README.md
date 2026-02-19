@@ -139,3 +139,5 @@ FROM EnergyLogs E
 JOIN Missions M ON E.MissionID = M.MissionID
 GROUP BY M.MissionName, FORMAT(E.LogTime, 'yyyy-MM-dd HH')
 ORDER BY HourBlock DESC;
+# OUTPUT
+https://i.supaimg.com/5908bf48-1440-41d6-b8cc-2a0fbc2648ec.png
