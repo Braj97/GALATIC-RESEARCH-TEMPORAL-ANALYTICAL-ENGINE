@@ -66,4 +66,15 @@ INSERT INTO Missions (MissionName, ScientistID, StartDate, EnergyConsumed, Statu
 VALUES
 ('Black Hole Mapping', 1, GETDATE(), 12000.50, 'ACTIVE'),
 ('Alien Genome Study', 2, GETDATE(), 8000.40, 'ACTIVE');
-#
+# SCALAR FUNCTION (RISK INDEX)
+CREATE FUNCTION dbo.CalculateRiskIndex
+(
+    @Radiation INT,
+    @Gravity DECIMAL(5,2)
+)
+RETURNS FLOAT
+AS
+BEGIN
+    RETURN (@Radiation * @Gravity) / 10.0;
+END;
+GO
