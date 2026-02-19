@@ -87,4 +87,19 @@ SELECT
     dbo.CalculateRiskIndex(RadiationLevel, GravityFactor) AS RiskIndex
 FROM Planets;
 GO
+# STORED PROCEDURE
+CREATE PROCEDURE sp_GenerateEnergyReport
+AS
+BEGIN
+    SELECT 
+        M.MissionName,
+        S.FullName,
+        SUM(E.EnergyOutput) AS TotalEnergyGenerated,
+        AVG(E.Temperature) AS AvgTemperature
+    FROM Missions M
+    JOIN Scientists S ON M.ScientistID = S.ScientistID
+    JOIN EnergyLogs E ON M.MissionID = E.MissionID
+    GROUP BY M.MissionName, S.FullName;
+END;
+GO
 #
