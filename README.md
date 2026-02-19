@@ -49,4 +49,21 @@ CREATE TABLE EnergyLogs (
     Temperature FLOAT,
     FOREIGN KEY (MissionID) REFERENCES Missions(MissionID)
 );
-# 
+# INSERT SAMPLE DATA
+INSERT INTO Planets (PlanetName, GravityFactor, RadiationLevel, AtmosphereType)
+VALUES 
+('Xenon Prime', 1.8, 450, 'Methane Plasma'),
+('Zypherion', 0.6, 120, 'Hydrogen Mist'),
+('Orion-X', 2.4, 800, 'Toxic Vapor');
+
+INSERT INTO Scientists (FullName, IQLevel, Specialization, EnergySignature, AssignedPlanetID)
+VALUES
+('Dr. Aryan Rao', 198, 'Quantum Physics', 5400.50, 1),
+('Dr. Meera Sen', 185, 'Astro Biology', 4300.30, 2),
+('Dr. Ishaan Verma', 210, 'Dark Energy Systems', 6800.00, 3);
+
+INSERT INTO Missions (MissionName, ScientistID, StartDate, EnergyConsumed, Status)
+VALUES
+('Black Hole Mapping', 1, GETDATE(), 12000.50, 'ACTIVE'),
+('Alien Genome Study', 2, GETDATE(), 8000.40, 'ACTIVE');
+#
