@@ -78,3 +78,13 @@ BEGIN
     RETURN (@Radiation * @Gravity) / 10.0;
 END;
 GO
+# PLANET RISK OVERVIEW
+CREATE VIEW vw_PlanetRisk AS
+SELECT 
+    PlanetName,
+    RadiationLevel,
+    GravityFactor,
+    dbo.CalculateRiskIndex(RadiationLevel, GravityFactor) AS RiskIndex
+FROM Planets;
+GO
+#
