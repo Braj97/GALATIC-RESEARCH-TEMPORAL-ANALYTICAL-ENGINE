@@ -124,4 +124,10 @@ BEGIN
     WHERE i.EnergyOutput > 10000;
 END;
 GO
+# INDEXING FOR PERFORMANCE
+CREATE INDEX IX_EnergyLogs_MissionID
+ON EnergyLogs(MissionID);
+
+CREATE INDEX IX_Scientists_PlanetID
+ON Scientists(AssignedPlanetID);
 # 
