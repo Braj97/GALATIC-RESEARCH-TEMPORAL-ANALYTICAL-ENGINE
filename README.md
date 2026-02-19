@@ -102,4 +102,26 @@ BEGIN
     GROUP BY M.MissionName, S.FullName;
 END;
 GO
-#
+# TRIGGER (AI ANAMOLY DETECTOR)
+CREATE TABLE AnomalyAlerts (
+    AlertID INT PRIMARY KEY IDENTITY,
+    MissionID INT,
+    AlertMessage NVARCHAR(500),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+GO
+
+CREATE TRIGGER trg_EnergyAnomaly
+ON EnergyLogs
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO AnomalyAlerts (MissionID, AlertMessage)
+    SELECT 
+        i.MissionID,
+        '⚠ Energy Spike Detected! Output exceeded safe threshold.'
+    FROM inserted i
+    WHERE i.EnergyOutput > 10000;
+END;
+GO
+# 
