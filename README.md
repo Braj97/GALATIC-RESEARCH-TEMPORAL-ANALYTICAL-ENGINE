@@ -130,4 +130,12 @@ ON EnergyLogs(MissionID);
 
 CREATE INDEX IX_Scientists_PlanetID
 ON Scientists(AssignedPlanetID);
-# 
+# COMPLEX QUERY
+SELECT 
+    M.MissionName,
+    FORMAT(E.LogTime, 'yyyy-MM-dd HH') AS HourBlock,
+    SUM(E.EnergyOutput) AS HourlyEnergy
+FROM EnergyLogs E
+JOIN Missions M ON E.MissionID = M.MissionID
+GROUP BY M.MissionName, FORMAT(E.LogTime, 'yyyy-MM-dd HH')
+ORDER BY HourBlock DESC;
